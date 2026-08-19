@@ -12,6 +12,9 @@ class UserProfile(Base):
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), unique=True, nullable=False, index=True)
     weight_kg = Column(Numeric, nullable=True)
+    height_cm = Column(Numeric, nullable=True)
+    age = Column(Numeric, nullable=True)
+    sex = Column(String, nullable=True)
     goal = Column(String, nullable=True)  # 'bulk' | 'cut' | 'maintain'
     activity_level = Column(String, nullable=True)  # 'sedentary' | 'light' | 'moderate' | 'active' | 'very_active'
     target_calories = Column(Numeric, nullable=True)

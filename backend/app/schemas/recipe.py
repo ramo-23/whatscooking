@@ -37,3 +37,10 @@ class RecipeOut(BaseModel):
 
     class Config:
         from_attributes = True
+
+class RecipeMatchResult(BaseModel):
+    recipe_id: uuid.UUID
+    spoonacular_id: int
+    title: str
+    coverage_pct: float
+    missing_ingredients: list[str]

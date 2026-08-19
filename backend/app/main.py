@@ -1,11 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routers import auth, pantry, recipes
+from app.routers import auth, pantry, recipes, profile
 
 app = FastAPI(title="WhatsCooking API")
 app.include_router(auth.router)
 app.include_router(pantry.router)
 app.include_router(recipes.router)
+app.include_router(profile.router)
 
 app.add_middleware(
     CORSMiddleware,
