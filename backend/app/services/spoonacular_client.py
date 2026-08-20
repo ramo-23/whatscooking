@@ -19,6 +19,20 @@ def search_recipes_by_ingredients(ingrediets: list[str], number: int = 10) -> li
         raise RuntimeError(f"Spoonacular search failed: {response.status_code} {response.text}")
     return response.json()
 
+
+def search_recipes_by_query(query: str, number: int = 10) -> list[dict]:
+    response = httpx.get(
+        f"{BASE_URL}/recipes/complexSearch",
+        params={
+            "query": query,
+            "number": number,
+            "apiKey": settings.spoonacular_api_key,
+        },
+    )
+    if response.status_code != 200:
+        raise RuntimeError(f"Spoonacular query search failed: {response.status_code} {response.text}")
+    return response.json().get("results", [])
+
 def fetch_recipe_details(spoonacular_id: int) -> dict: 
     response = httpx.get(
         f"{BASE_URL}/recipes/{spoonacular_id}/information",
